@@ -11,13 +11,14 @@ type Profile = {
   code: string;
   icon: string;
   name: string;
-  ko: string;
   line: string;
   description: string;
   color: string;
   soft: string;
   tastes: [string, string, string];
   matchKey: string;
+  group: "A" | "B";
+  subgroup: string;
 };
 
 const questions: Question[] = [
@@ -124,14 +125,14 @@ const questions: Question[] = [
 ];
 
 const profiles: Profile[] = [
-  { key: "SND", code: "TYPE 01", icon: "🔥", name: "Spark Explorer", ko: "스파크 익스플로러", line: "재미의 온도를 먼저 올리는 사람", description: "새로운 장면과 사람 앞에서 에너지가 살아나요. 먼저 웃고, 먼저 제안하고, 모두를 오늘의 모험 안으로 끌어들이는 타입이에요.", color: "#ff5d3a", soft: "#fff0eb", tastes: ["☕ Hot Place", "🎵 Live Beat", "✈ Quick Trip"], matchKey: "RFC" },
-  { key: "SNC", code: "TYPE 02", icon: "🎧", name: "Mood Curator", ko: "무드 큐레이터", line: "사람과 취향 사이를 감각적으로 잇는 사람", description: "새로운 취향을 발견하는 감각과 상대의 분위기를 읽는 여유를 함께 가졌어요. 좋은 음악, 공간, 사람을 자연스럽게 연결해요.", color: "#7657ff", soft: "#f0edff", tastes: ["🎧 Indie Mix", "📷 Photo Walk", "🍸 Night Mood"], matchKey: "SFD" },
-  { key: "SFD", code: "TYPE 03", icon: "⚡", name: "Happy Booster", ko: "해피 부스터", line: "익숙한 사이에 가장 큰 웃음을 더하는 사람", description: "사람을 좋아하고 반응이 빠른 에너자이저예요. 새로움보다 함께라는 감각이 중요하고, 친한 사람들의 텐션을 확실히 끌어올려요.", color: "#ffb000", soft: "#fff7dc", tastes: ["🍕 Food Crew", "🎤 Sing Along", "🎮 Team Play"], matchKey: "SNC" },
-  { key: "SFC", code: "TYPE 04", icon: "☕", name: "Warm Connector", ko: "웜 커넥터", line: "편안한 대화로 사이를 천천히 데우는 사람", description: "낯선 사람도 부담 없이 머물게 하는 따뜻함이 있어요. 익숙하고 편안한 공간에서 오래 이어지는 관계를 만드는 타입이에요.", color: "#d56a8a", soft: "#fff0f5", tastes: ["☕ Cozy Cafe", "💬 Long Talk", "🍰 Sweet Break"], matchKey: "RND" },
-  { key: "RND", code: "TYPE 05", icon: "🚲", name: "Solo Adventurer", ko: "솔로 어드벤처러", line: "자기만의 속도로 새로운 세계를 여는 사람", description: "혼자 움직일 때 오히려 호기심이 더 선명해져요. 남들이 지나친 장소와 취향을 발견하고, 특별한 경험으로 만들어 돌아와요.", color: "#0e9f86", soft: "#e5faf5", tastes: ["🚲 City Ride", "🗺 Hidden Spot", "🥤 New Taste"], matchKey: "SFC" },
-  { key: "RNC", code: "TYPE 06", icon: "🌙", name: "Dreamy Observer", ko: "드리미 옵저버", line: "조용한 순간 속 디테일을 발견하는 사람", description: "빠르게 섞이기보다 분위기와 사람을 천천히 바라봐요. 감각적인 취향과 섬세한 관찰로 평범한 순간을 특별하게 기억해요.", color: "#5371d8", soft: "#ebf0ff", tastes: ["🌙 Night Walk", "📖 Quiet Page", "🎞 Art Film"], matchKey: "RFD" },
-  { key: "RFD", code: "TYPE 07", icon: "🧩", name: "Steady Maker", ko: "스테디 메이커", line: "믿을 수 있는 리듬으로 관계를 완성하는 사람", description: "화려하게 앞에 서기보다 약속과 디테일을 지켜요. 익숙한 사람들에게 든든한 중심이 되고, 함께한 시간을 차곡차곡 쌓아가요.", color: "#527d35", soft: "#edf7e7", tastes: ["🧩 Deep Focus", "🥪 Home Picnic", "📚 Book Shop"], matchKey: "RNC" },
-  { key: "RFC", code: "TYPE 08", icon: "🌿", name: "Calm Listener", ko: "캄 리스너", line: "말보다 마음의 속도를 먼저 맞추는 사람", description: "조용히 듣고 꼭 필요한 순간에 정확한 말을 건네요. 가까워질수록 편안하고 오래 남는 안정감을 주는 타입이에요.", color: "#288d62", soft: "#e8f7ef", tastes: ["🌿 Slow Walk", "🫖 Tea Time", "💌 Deep Talk"], matchKey: "SND" },
+  { key: "SND", code: "TYPE 01", icon: "🔥", name: "Spark Explorer", line: "재미의 온도를 먼저 올리는 사람", description: "새로운 장면과 사람 앞에서 에너지가 살아나요. 먼저 웃고, 먼저 제안하고, 모두를 오늘의 모험 안으로 끌어들이는 타입이에요.", color: "#ff5d3a", soft: "#fff0eb", tastes: ["☕ 핫플레이스", "🎵 라이브 음악", "✈ 즉흥 여행"], matchKey: "RFC", group: "A", subgroup: "spark" },
+  { key: "SNC", code: "TYPE 02", icon: "🎧", name: "Mood Curator", line: "사람과 취향 사이를 감각적으로 잇는 사람", description: "새로운 취향을 발견하는 감각과 상대의 분위기를 읽는 여유를 함께 가졌어요. 좋은 음악, 공간, 사람을 자연스럽게 연결해요.", color: "#7657ff", soft: "#f0edff", tastes: ["🎧 인디 음악", "📷 사진 산책", "🍸 밤의 분위기"], matchKey: "SFD", group: "A", subgroup: "mood" },
+  { key: "SFD", code: "TYPE 03", icon: "⚡", name: "Happy Booster", line: "익숙한 사이에 가장 큰 웃음을 더하는 사람", description: "사람을 좋아하고 반응이 빠른 에너자이저예요. 새로움보다 함께라는 감각이 중요하고, 친한 사람들의 텐션을 확실히 끌어올려요.", color: "#ffb000", soft: "#fff7dc", tastes: ["🍕 맛집 모임", "🎤 함께 노래하기", "🎮 팀플레이"], matchKey: "SNC", group: "A", subgroup: "mood" },
+  { key: "SFC", code: "TYPE 04", icon: "☕", name: "Warm Connector", line: "편안한 대화로 사이를 천천히 데우는 사람", description: "낯선 사람도 부담 없이 머물게 하는 따뜻함이 있어요. 익숙하고 편안한 공간에서 오래 이어지는 관계를 만드는 타입이에요.", color: "#d56a8a", soft: "#fff0f5", tastes: ["☕ 아늑한 카페", "💬 깊은 대화", "🍰 달콤한 휴식"], matchKey: "RND", group: "B", subgroup: "warm" },
+  { key: "RND", code: "TYPE 05", icon: "🚲", name: "Solo Adventurer", line: "자기만의 속도로 새로운 세계를 여는 사람", description: "혼자 움직일 때 오히려 호기심이 더 선명해져요. 남들이 지나친 장소와 취향을 발견하고, 특별한 경험으로 만들어 돌아와요.", color: "#0e9f86", soft: "#e5faf5", tastes: ["🚲 도시 라이딩", "🗺 숨은 명소", "🥤 새로운 맛"], matchKey: "SFC", group: "B", subgroup: "warm" },
+  { key: "RNC", code: "TYPE 06", icon: "🌙", name: "Dreamy Observer", line: "조용한 순간 속 디테일을 발견하는 사람", description: "빠르게 섞이기보다 분위기와 사람을 천천히 바라봐요. 감각적인 취향과 섬세한 관찰로 평범한 순간을 특별하게 기억해요.", color: "#5371d8", soft: "#ebf0ff", tastes: ["🌙 밤 산책", "📖 조용한 독서", "🎞 예술 영화"], matchKey: "RFD", group: "B", subgroup: "steady" },
+  { key: "RFD", code: "TYPE 07", icon: "🧩", name: "Steady Maker", line: "믿을 수 있는 리듬으로 관계를 완성하는 사람", description: "화려하게 앞에 서기보다 약속과 디테일을 지켜요. 익숙한 사람들에게 든든한 중심이 되고, 함께한 시간을 차곡차곡 쌓아가요.", color: "#527d35", soft: "#edf7e7", tastes: ["🧩 깊은 몰입", "🥪 집 근처 피크닉", "📚 서점 산책"], matchKey: "RNC", group: "B", subgroup: "steady" },
+  { key: "RFC", code: "TYPE 08", icon: "🌿", name: "Calm Listener", line: "말보다 마음의 속도를 먼저 맞추는 사람", description: "조용히 듣고 꼭 필요한 순간에 정확한 말을 건네요. 가까워질수록 편안하고 오래 남는 안정감을 주는 타입이에요.", color: "#288d62", soft: "#e8f7ef", tastes: ["🌿 느린 산책", "🫖 차 한 잔", "💌 진솔한 대화"], matchKey: "SND", group: "A", subgroup: "spark" },
 ];
 
 function getResult(answers: number[]) {
@@ -152,6 +153,8 @@ export default function Home() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const result = useMemo(() => getResult(answers), [answers]);
+  const resultGroup = profiles.filter((profile) => profile.group === result.profile.group);
+  const nearbyProfiles = resultGroup.filter((profile) => profile.key !== result.profile.key);
 
   useEffect(() => {
     if (phase !== "analyzing") return;
@@ -186,7 +189,7 @@ export default function Home() {
     ctx.fillStyle = "#151515"; ctx.font = "800 30px Arial"; ctx.fillText("🧪  SALC CHEMISTRY LAB", 110, 145);
     ctx.fillStyle = profile.color; ctx.font = "800 176px Arial"; ctx.fillText(profile.icon, 105, 385);
     ctx.fillStyle = "#151515"; ctx.font = "800 82px Arial"; ctx.fillText(profile.name, 105, 510);
-    ctx.font = "700 38px Arial"; ctx.fillText(profile.ko, 108, 568);
+    ctx.font = "700 30px Arial"; ctx.fillText(profile.line, 108, 568);
     ctx.fillStyle = "#666"; ctx.font = "30px Arial"; ctx.fillText(profile.line, 108, 630);
     ctx.fillStyle = profile.color; round(105, 695, 870, 190, 34);
     ctx.fillStyle = "#fff"; ctx.font = "700 28px Arial"; ctx.fillText("CHEMISTRY", 150, 755);
@@ -267,7 +270,7 @@ export default function Home() {
           <div className="result-copy">
             <p className="result-overline">YOUR CHEMISTRY · {result.profile.code}</p>
             <span className="result-emoji">{result.profile.icon}</span>
-            <h1>{result.profile.name}</h1><h2>{result.profile.ko}</h2>
+            <h1>{result.profile.name}</h1>
             <p className="result-line">“{result.profile.line}”</p>
             <p className="result-description">{result.profile.description}</p>
             <div className="axis-list">
@@ -280,11 +283,26 @@ export default function Home() {
           <article className="result-card">
             <div className="result-card-head"><b>🧪 SALC</b><span>CHEMISTRY LAB<br />{result.profile.code}</span></div>
             <div className="result-card-icon">{result.profile.icon}</div>
-            <div className="result-card-name"><b>{result.profile.name}</b><span>{result.profile.ko}</span></div>
+            <div className="result-card-name"><b>{result.profile.name}</b></div>
             <div className="score-box"><span>CHEMISTRY</span><b>{result.chemistry}<i>%</i></b></div>
             <div className="taste-box"><span>MY TASTE</span>{result.profile.tastes.map((taste) => <b key={taste}>{taste}</b>)}</div>
-            <div className="match-box"><div><span>BEST MATCH</span><b>{result.match.name}</b><small>{result.match.ko}</small></div><strong>{result.match.icon}</strong></div>
+            <div className="match-box"><div><span>BEST MATCH</span><b>{result.match.name}</b></div><strong>{result.match.icon}</strong></div>
           </article>
+          <div className="match-visual">
+            <div className="match-visual-head"><span>나의 케미 지도</span><b>같은 그룹 · 3가지 연결</b></div>
+            <article className="match-triangle">
+              <div className="triangle-stage">
+                <i className="triangle-line line-top" /><i className="triangle-line line-right" /><i className="triangle-line line-left" />
+                {nearbyProfiles.map((profile, index) => (
+                  <div className={`triangle-node triangle-node-${index + 1} ${profile.key === result.match.key ? "is-match" : ""}`} key={profile.key}>
+                    <span>{profile.icon}</span><b>{profile.key}</b><small>{profile.name}</small>
+                  </div>
+                ))}
+                <div className="triangle-center"><span>{result.profile.icon}</span><b>{result.profile.key}</b><small>나의 유형</small></div>
+              </div>
+              <div className="triangle-caption"><b>{result.profile.name}</b><small>라임색은 가장 잘 맞는 유형이에요</small></div>
+            </article>
+          </div>
         </section>
       )}
     </main>
