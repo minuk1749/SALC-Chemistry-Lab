@@ -175,34 +175,6 @@ export default function Home() {
     else { setStep(step - 1); setAnswers(answers.slice(0, -1)); }
   };
 
-  const downloadCard = () => {
-    const { profile, match, chemistry } = result;
-    const canvas = document.createElement("canvas");
-    canvas.width = 1080; canvas.height = 1350;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.fillStyle = profile.soft; ctx.fillRect(0, 0, 1080, 1350);
-    const round = (x: number, y: number, w: number, h: number, r: number) => {
-      ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fill();
-    };
-    ctx.fillStyle = "#ffffff"; round(58, 58, 964, 1234, 54);
-    ctx.fillStyle = "#151515"; ctx.font = "800 30px Arial"; ctx.fillText("🧪  SALC CHEMISTRY LAB", 110, 145);
-    ctx.fillStyle = profile.color; ctx.font = "800 176px Arial"; ctx.fillText(profile.icon, 105, 385);
-    ctx.fillStyle = "#151515"; ctx.font = "800 82px Arial"; ctx.fillText(profile.name, 105, 510);
-    ctx.font = "700 30px Arial"; ctx.fillText(profile.line, 108, 568);
-    ctx.fillStyle = "#666"; ctx.font = "30px Arial"; ctx.fillText(profile.line, 108, 630);
-    ctx.fillStyle = profile.color; round(105, 695, 870, 190, 34);
-    ctx.fillStyle = "#fff"; ctx.font = "700 28px Arial"; ctx.fillText("CHEMISTRY", 150, 755);
-    ctx.font = "800 94px Arial"; ctx.fillText(`${chemistry}%`, 145, 850);
-    ctx.fillStyle = "#151515"; ctx.font = "700 27px Arial"; ctx.fillText("MY TASTE", 108, 960);
-    ctx.font = "700 29px Arial"; profile.tastes.forEach((taste, index) => ctx.fillText(taste, 110, 1025 + index * 54));
-    ctx.fillStyle = "#f3f3f3"; round(105, 1190, 870, 70, 24);
-    ctx.fillStyle = "#151515"; ctx.font = "700 25px Arial"; ctx.fillText(`BEST MATCH  ${match.icon} ${match.name}`, 145, 1236);
-    const link = document.createElement("a");
-    link.download = `SALC-${profile.name.replaceAll(" ", "-")}.png`;
-    link.href = canvas.toDataURL("image/png"); link.click();
-  };
-
   return (
     <main className={`app phase-${phase}`} style={{ "--accent": result.profile.color, "--soft": result.profile.soft } as React.CSSProperties}>
       <header className="topbar">
@@ -278,7 +250,7 @@ export default function Home() {
               <div><span>New Taste</span><i><b style={{ width: `${50 + Math.max(-40, Math.min(40, result.totals[1] * 3))}%` }} /></i></div>
               <div><span>Active Tempo</span><i><b style={{ width: `${50 + Math.max(-40, Math.min(40, result.totals[2] * 3))}%` }} /></i></div>
             </div>
-            <div className="actions"><button className="cta" onClick={downloadCard}><span>결과 카드 저장</span><b>DOWNLOAD ↓</b></button><button className="retry" onClick={begin}>RETRY ↻</button></div>
+            <div className="actions"><button className="retry" onClick={begin}>RETRY ↻</button></div>
           </div>
           <article className="result-card">
             <div className="result-card-head"><b>🧪 SALC</b><span>CHEMISTRY LAB<br />{result.profile.code}</span></div>
