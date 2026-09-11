@@ -179,7 +179,7 @@ export default function Home() {
     <main className={`app phase-${phase}`} style={{ "--accent": result.profile.color, "--soft": result.profile.soft } as React.CSSProperties}>
       <header className="topbar">
         <button className="brand" onClick={() => setPhase("intro")} aria-label="처음 화면으로">
-          <span>🧪</span><b>SALC</b><em>CHEMISTRY LAB</em>
+          <span>🧪</span><b>SALC CHEMISTRY LAB</b>
         </button>
         <div className="top-pills"><span>8 TYPES</span><span>10 Q&apos;S</span><i>LIVE</i></div>
       </header>
@@ -187,7 +187,6 @@ export default function Home() {
       {phase === "intro" && (
         <section className="intro page-in">
           <div className="intro-copy">
-            <div className="mini-label"><span>NEW</span> SOCIAL CHEMISTRY TEST</div>
             <h1>What&apos;s your<br /><strong>chemistry?</strong></h1>
             <p>10개의 선택으로 발견하는<br />나의 취향, 텐션, 그리고 잘 맞는 사람.</p>
             <button className="cta" onClick={begin}><span>테스트 시작하기</span><b>START ↗</b></button>
