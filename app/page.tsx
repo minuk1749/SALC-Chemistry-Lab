@@ -190,7 +190,7 @@ export default function Home() {
             <h1>What&apos;s your<br /><strong>chemistry?</strong></h1>
             <p>10개의 선택으로 발견하는<br />나의 취향, 텐션, 그리고 잘 맞는 사람.</p>
             <button className="cta" onClick={begin}><span>테스트 시작하기</span><b>START ↗</b></button>
-            <div className="intro-foot"><span>NO LOGIN</span><span>NO LLM</span><span>ABOUT 3 MIN</span></div>
+            <div className="intro-foot"><span>ABOUT 3 MIN</span></div>
           </div>
           <div className="card-stack" aria-hidden="true">
             <div className="ghost-card ghost-one" /><div className="ghost-card ghost-two" />
@@ -211,7 +211,7 @@ export default function Home() {
         <section className="test page-in">
           <div className="test-top">
             <button onClick={goBack}>← BACK</button>
-            <div className="step-count"><b>{String(step + 1).padStart(2, "0")}</b><span>/ {questions.length}</span></div>
+            <div className="step-count"><b>{String(step + 1).padStart(2, "0")} / {questions.length}</b></div>
             <span>{Math.round(((step + 1) / questions.length) * 100)}%</span>
           </div>
           <div className="progress"><i style={{ width: `${((step + 1) / questions.length) * 100}%` }} /></div>
